@@ -8581,6 +8581,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_app__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_app__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _css_tailwind_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../css/tailwind.css */ "./css/tailwind.css");
 /* harmony import */ var _css_tailwind_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_css_tailwind_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../css/_main.css */ "./css/_main.css");
+/* harmony import */ var _css_main_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_css_main_css__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
@@ -8589,6 +8591,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _jsxFileName = "/Users/charlescarrier/Dev/marylandLettersProject/frontend/pages/_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement;
+
 
 
 
@@ -8613,7 +8616,7 @@ function (_App) {
       return __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 7
+          lineNumber: 8
         },
         __self: this
       }));

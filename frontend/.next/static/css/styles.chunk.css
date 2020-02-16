@@ -54305,5 +54305,13 @@ video {
   }
 }
 
+span {
+  background-color: aqua;
+}
+
+.main {
+  background-color: green;
+}
+
 
 /*# sourceMappingURL=styles.chunk.css.map*/

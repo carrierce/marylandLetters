@@ -88,10 +88,256 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./components/Footer.js":
+/*!******************************!*\
+  !*** ./components/Footer.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/Users/charlescarrier/Dev/marylandLettersProject/frontend/components/Footer.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+const Footer = props => {
+  return __jsx("div", {
+    className: "container m-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 2
+    },
+    __self: undefined
+  }, "FOOTER");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
+
+/***/ }),
+
+/***/ "./components/Header.js":
+/*!******************************!*\
+  !*** ./components/Header.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/Users/charlescarrier/Dev/marylandLettersProject/frontend/components/Header.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+const Header = props => {
+  return __jsx("div", {
+    className: "container m-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 3
+    },
+    __self: undefined
+  }, __jsx("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 4
+    },
+    __self: undefined
+  }, "HEADER"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Header);
+
+/***/ }),
+
+/***/ "./components/Layout.js":
+/*!******************************!*\
+  !*** ./components/Layout.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header */ "./components/Header.js");
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Footer */ "./components/Footer.js");
+var _jsxFileName = "/Users/charlescarrier/Dev/marylandLettersProject/frontend/components/Layout.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+
+const Layout = props => {
+  return __jsx("div", {
+    className: "container m-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: undefined
+  }, __jsx(_Header__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: undefined
+  }), __jsx("div", {
+    className: "main",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: undefined
+  }, props.children), __jsx(_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: undefined
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Layout);
+
+/***/ }),
+
+/***/ "./components/Letter.js":
+/*!******************************!*\
+  !*** ./components/Letter.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+var _jsxFileName = "/Users/charlescarrier/Dev/marylandLettersProject/frontend/components/Letter.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+const Letter = props => {
+  const cleanedText = cleanText(props.data.text);
+  return __jsx("div", {
+    className: "container m-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 4
+    },
+    __self: undefined
+  }, __jsx("hr", {
+    className: "pt-4",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: undefined
+  }), __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: undefined
+  }, props.data.fromFirstName), __jsx("div", {
+    dangerouslySetInnerHTML: {
+      __html: cleanedText
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: undefined
+  }));
+};
+
+const cleanText = letterText => {
+  let textToArray = letterText.split("");
+  let spanOpen = false;
+  let inputArray = textToArray;
+
+  for (let i = 0; i < inputArray.length; i++) {
+    if (!spanOpen) {
+      if (inputArray[i] == "\t") {
+        inputArray[i] = '<span class="pl-4">';
+        spanOpen = true;
+      }
+    } else if (spanOpen) {
+      if (inputArray[i] == "\t") {
+        inputArray[i] = '</span><span class="pl-4">';
+        spanOpen = true;
+      } else if (inputArray[i] == "\r") {
+        inputArray[i] = "</span><br />";
+        spanOpen = false;
+      } else if (i == inputArray.length - 1) {
+        inputArray.push("</span>");
+        spanOpen = false;
+      }
+    }
+
+    if (inputArray[i] == "\r") {
+      inputArray[i] = "<br />";
+    }
+  }
+
+  let text = inputArray.join("");
+  return text;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Letter);
+
+/***/ }),
+
+/***/ "./components/Letters.js":
+/*!*******************************!*\
+  !*** ./components/Letters.js ***!
+  \*******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Letter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Letter */ "./components/Letter.js");
+var _jsxFileName = "/Users/charlescarrier/Dev/marylandLettersProject/frontend/components/Letters.js";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
+
+
+const Letters = props => {
+  return __jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: undefined
+  }, props.data.map(letter => {
+    return __jsx(_Letter__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: letter.letter_id,
+      data: letter,
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 7
+      },
+      __self: undefined
+    });
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Letters);
+
+/***/ }),
 
 /***/ "./pages/index.js":
 /*!************************!*\
@@ -104,8 +350,8 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! isomorphic-unfetch */ "isomorphic-unfetch");
-/* harmony import */ var isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Letters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Letters */ "./components/Letters.js");
+/* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
 var _jsxFileName = "/Users/charlescarrier/Dev/marylandLettersProject/frontend/pages/index.js";
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
@@ -113,17 +359,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 const Index = props => {
-  return __jsx("div", {
-    className: "container m-4",
+  return __jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 6
     },
     __self: undefined
-  }, __jsx("div", {
-    dangerouslySetInnerHTML: {
-      __html: props.data
-    },
+  }, __jsx(_components_Letters__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    data: props.data,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 7
@@ -133,94 +376,10 @@ const Index = props => {
 };
 
 Index.getInitialProps = async () => {
-  const response = await isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_1___default()("http://localhost:5500/api/letter/1");
+  const response = await fetch("http://localhost:5500/api/");
   const data = await response.json();
-  let textToArray = data[0].text.split("");
-  let testText = "\tMonday \tMay 9\rMrs. Jervis\rDear Madam,\rThe Dr. pronounced\rVery regard\r\tTruly yours,\r\tJ. H. Sullivan"; // <span class="pl-4">Monday </span><span class="pl-4">May 9</span><p> Mrs. Jervis</p><p>Dear Madam,
-  // </p><p>The Dr. pronounced</p><p>Very regard</p><p><span class="pl-4">Truly yours,
-  // </span></p><p><span span class="pl-4">J. H. Sullivan</span></p>
-
-  let testTextToArray = testText.split("");
-  let paragraphOpen = false;
-  let spanOpen = false;
-  let inputArray = textToArray;
-
-  for (let i = 0; i < inputArray.length; i++) {
-    if (!spanOpen) {
-      if (!paragraphOpen && inputArray[i] == "\t" && inputArray[i - 1] == "</span></p>") {
-        paragraphOpen = true;
-        spanOpen = true;
-        inputArray[i] = '<p><span class="pl-4">';
-      }
-
-      if (inputArray[i] == "\t") {
-        spanOpen = true;
-        inputArray[i] = '<span class="pl-4">';
-      }
-    }
-
-    if (spanOpen && !paragraphOpen) {
-      if (testTextToArray[i] == "\r") {
-        spanOpen = false;
-        paragraphOpen = true;
-        testTextToArray[i] = "</span><p>";
-      }
-
-      if (inputArray[i] == "\t") {
-        inputArray[i] = '</span><span class="pl-4">';
-      }
-    }
-
-    if (!paragraphOpen) {
-      if (inputArray[i] == "\r") {
-        paragraphOpen = true;
-        inputArray[i] = "<p>";
-      }
-    }
-
-    if (paragraphOpen && !spanOpen) {
-      if (inputArray[i] == "\r") {
-        paragraphOpen = true;
-        inputArray[i] = "</p><p>";
-      }
-
-      if (inputArray[i] == "\t" && inputArray[i + 1] == "\r") {
-        paragraphOpen = true;
-        inputArray[i] = "</p>";
-      }
-    }
-
-    if (i == inputArray.length - 1) {
-      if (paragraphOpen && spanOpen) {
-        inputArray.push("</span></p>");
-        paragraphOpen = false;
-        spanOpen = false;
-      }
-
-      if (paragraphOpen) {
-        inputArray.push("</p>");
-        paragraphOpen = false;
-      }
-
-      if (spanOpen) {
-        inputArray.push("</span>");
-        spanOpen = false;
-      }
-    }
-
-    if (spanOpen && paragraphOpen) {
-      if (inputArray[i] == "\r") {
-        paragraphOpen = false;
-        spanOpen = false;
-        inputArray[i] = "</span></p>";
-      }
-    }
-  }
-
-  let outputText = inputArray.join("");
-  console.log(inputArray.join(""));
   return {
-    data: outputText
+    data: data
   };
 };
 
@@ -228,7 +387,7 @@ Index.getInitialProps = async () => {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
@@ -237,17 +396,6 @@ Index.getInitialProps = async () => {
 
 module.exports = __webpack_require__(/*! /Users/charlescarrier/Dev/marylandLettersProject/frontend/pages/index.js */"./pages/index.js");
 
-
-/***/ }),
-
-/***/ "isomorphic-unfetch":
-/*!*************************************!*\
-  !*** external "isomorphic-unfetch" ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("isomorphic-unfetch");
 
 /***/ }),
 

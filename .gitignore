@@ -1,0 +1,23 @@
+# OS X
+.DS_Store*
+Icon?
+._*
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+# Linux
+.directory
+*~
+# npm
+expressblogapi/node_modules
+frontend/node_modules
+expressblogapi/package-lock.json
+frontend/package-lock.json
+*.log
+*.gz
+# Coveralls
+coverage
+# Benchmarking
+benchmarks/graphs
+nodemon.json

@@ -1,7 +1,8 @@
-span {
-  background-color: aqua;
+.main {
+  color: black;
 }
 
-.main {
-  background-color: green;
+body {
+  display: flex;
+  justify-content: center;
 }

@@ -1,5 +1,6 @@
 import Letters from "../components/Letters";
 import Layout from "../components/Layout";
+const fetch = require("node-fetch");
 
 const Index = props => {
   return (
@@ -10,7 +11,10 @@ const Index = props => {
 };
 
 Index.getInitialProps = async () => {
-  const response = await fetch("http://localhost:5500/api/");
+  const response = await fetch(
+    "http://localhost:5500/api/letters/?fromFirstName=Mary"
+    // "http://localhost:5500/api/letters/?{this.state.filters}
+  );
   const data = await response.json();
   return {
     data: data

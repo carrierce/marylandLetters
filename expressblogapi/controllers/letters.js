@@ -26,14 +26,74 @@ const getLetterByYear = async (req, res) => {
 };
 
 const getLetterByQuery = async (req, res) => {
-  console.log('letter by query');
-  const year = req.query.year;
-  if (year) {
+  const request = req.query;
+  try {
     const letters = await db('letters')
-      .select('text', 'fromFirstName')
-      .where('year', year);
+      .select('text', 'fromFirstName', 'year')
+      .where(function() {
+        if (request.year) {
+          this.where('year', request.year);
+        }
+        if (request.day) {
+          this.andWhere('day', request.day);
+        }
+        if (request.month) {
+          this.andWhere('month', request.month);
+        }
+        if (request.wordCount) {
+          this.andWhere('wordCount', request.wordCount);
+        }
+        if (request.fromFirstName) {
+          this.andWhere(
+            'fromFirstName',
+            'like',
+            '%' + request.fromFirstName + '%'
+          );
+        }
+        if (request.fromLastName) {
+          this.andWhere(
+            'fromLastName',
+            'like',
+            '%' + request.fromLastName + '%'
+          );
+        }
+        if (request.notes) {
+          this.andWhere('notes', 'like', '%' + request.notes + '%');
+        }
+        if (request.openingNote) {
+          this.andWhere('openingNote', 'like', '%' + request.openingNote + '%');
+        }
+        if (request.place) {
+          this.andWhere('place', 'like', '%' + request.place + '%');
+        }
+        if (request.postmark) {
+          this.andWhere('postmark', 'like', '%' + request.postmark + '%');
+        }
+        if (request.text) {
+          this.andWhere('text', 'like', '%' + request.text + '%');
+        }
+        if (request.toAddress) {
+          this.andWhere('toAddress', 'like', '%' + request.toAddress + '%');
+        }
+        if (request.toPersonFromPerson) {
+          this.andWhere(
+            'toPersonFromPerson',
+            'like',
+            '%' + request.toPersonFromPerson + '%'
+          );
+        }
+        if (request.to) {
+          this.andWhere('to', 'like', '%' + request.to + '%');
+        }
+        if (request) {
+          this.orWhere('year', -1000);
+        }
+      });
+
+    res.send(letters);
+  } catch (err) {
+    res.status(400).send(err);
   }
-  res.send(req.query);
 };
 
 module.exports = {

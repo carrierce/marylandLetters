@@ -13,7 +13,8 @@ module.exports = {
     seeds: {
       directory: appRoot + '/db/seeds'
     },
-    useNullAsDefault: true
+    useNullAsDefault: true,
+    debug: true
   },
 
   staging: {

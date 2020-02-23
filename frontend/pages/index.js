@@ -10,7 +10,6 @@ class Index extends React.Component {
     super();
     this.state = {
       letters: [],
-      test: "hello",
       filters: {
         year: {
           enabled: false,

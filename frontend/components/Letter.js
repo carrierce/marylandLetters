@@ -2,10 +2,13 @@ const Letter = props => {
   const cleanedText = cleanText(props.data.text);
   return (
     <div className="container m-4 border-b-2 border-grey pb-5">
+      <div className="font-bold">
+        <p>Year: {props.data.year}</p>
+      </div>
       <div dangerouslySetInnerHTML={{ __html: cleanedText }} />
       <br />
       <div className="font-bold">
-        <p>From: {props.data.fromFirstName}</p>
+        <p>From First Name: {props.data.fromFirstName}</p>
       </div>
     </div>
   );

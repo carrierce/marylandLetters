@@ -29,7 +29,7 @@ const getLetterByQuery = async (req, res) => {
   const request = req.query;
   try {
     const letters = await db('letters')
-      .select('text', 'fromFirstName', 'year')
+      .select('text', 'fromFirstName', 'year', 'letter_id')
       .where(function() {
         if (request.year) {
           this.where('year', request.year);

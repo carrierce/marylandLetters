@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^4.9.5",
     "@zeit/next-css": "^1.0.1",
     "autoprefixer": "^9.7.4",
     "axios": "^0.19.2",

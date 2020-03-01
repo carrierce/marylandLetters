@@ -1,4 +1,5 @@
 import Filter from "./Filter";
+import { Button } from "@material-ui/core";
 
 const Filters = props => {
   //   const filters = [
@@ -37,7 +38,9 @@ const Filters = props => {
           />
         );
       })}
-      <button type="submit">Submit</button>
+      <Button type="submit" variant="contained" color="primary">
+        Submit
+      </Button>
     </form>
   );
 };

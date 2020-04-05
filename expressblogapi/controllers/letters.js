@@ -2,10 +2,11 @@ const appRoot = require('app-root-path');
 const db = require(appRoot + '/db/db');
 
 const getAllLetters = async (req, res) => {
+  console.log('getAllLetters');
   const letters = await db('letters')
     .select('*')
     .orderBy('letter_id', 'desc')
-    .limit(3);
+    .limit(10);
   res.send(letters);
 };
 
@@ -27,6 +28,10 @@ const getLetterByYear = async (req, res) => {
 
 const getLetterByQuery = async (req, res) => {
   const request = req.query;
+  const filterCheck = Object.keys(request).filter(item => {
+    return request[item] !== '';
+  });
+  console.log(filterCheck);
   try {
     const letters = await db('letters')
       .select('text', 'fromFirstName', 'year', 'letter_id')
@@ -89,8 +94,11 @@ const getLetterByQuery = async (req, res) => {
           this.orWhere('year', -1000);
         }
       });
-
-    res.send(letters);
+    if (filterCheck.length <= 0) {
+      getAllLetters(req, res);
+    } else {
+      res.send(letters);
+    }
   } catch (err) {
     res.status(400).send(err);
   }

@@ -1,72 +1,36 @@
 import Letters from "../components/Letters";
 import Layout from "../components/Layout";
 import Filters from "../components/Filters";
+import FilterTags from "../components/FilterTags";
 import React from "react";
 import axios from "axios";
+import { Button } from "@material-ui/core";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 const fetch = require("node-fetch");
 
 class Index extends React.Component {
   constructor() {
     super();
     this.state = {
+      filtersShown: false,
+      filterApplied: false,
       letters: [],
       filters: {
-        year: {
-          enabled: false,
-          value: ""
-        },
-        fromFirstName: {
-          enabled: false,
-          value: ""
-        },
-        day: {
-          enabled: false,
-          value: ""
-        },
-        month: {
-          enabled: false,
-          value: ""
-        },
-        wordCount: {
-          enabled: false,
-          value: ""
-        },
-        fromLastName: {
-          enabled: false,
-          value: ""
-        },
-        notes: {
-          enabled: false,
-          value: ""
-        },
-        openingNote: {
-          enabled: false,
-          value: ""
-        },
-        place: {
-          enabled: false,
-          value: ""
-        },
-        postmark: {
-          enabled: false,
-          value: ""
-        },
-        text: {
-          enabled: false,
-          value: ""
-        },
-        toAddress: {
-          enabled: false,
-          value: ""
-        },
-        toPersonFromPerson: {
-          enabled: false,
-          value: ""
-        },
-        to: {
-          enabled: false,
-          value: ""
-        }
+        year: "",
+        fromFirstName: "",
+        day: "",
+        month: "",
+        wordCount: "",
+        fromLastName: "",
+        notes: "",
+        openingNote: "",
+        place: "",
+        postmark: "",
+        text: "",
+        toAddress: "",
+        toPersonFromPerson: "",
+        to: ""
       }
     };
   }
@@ -82,7 +46,9 @@ class Index extends React.Component {
   };
 
   handleSubmit = async e => {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     let filters = {};
     const filterList = [
       "year",
@@ -101,8 +67,8 @@ class Index extends React.Component {
       "to"
     ];
     for (let i = 0; i < filterList.length; i++) {
-      if (this.state.filters[filterList[i]].enabled) {
-        filters[filterList[i]] = this.state.filters[filterList[i]].value;
+      if (this.state.filters[filterList[i]] !== "") {
+        filters[filterList[i]] = this.state.filters[filterList[i]];
       }
     }
     this.setState({
@@ -112,8 +78,22 @@ class Index extends React.Component {
       params: filters
     });
     this.setState({
-      letters: response.data
+      letters: response.data,
+      filterApplied: true
     });
+  };
+
+  handleClearFilter = filterName => {
+    console.log(filterName);
+    this.setState(
+      {
+        filters: {
+          ...this.state.filters,
+          [filterName]: ""
+        }
+      },
+      this.handleSubmit
+    );
   };
 
   handleInput = e => {
@@ -122,25 +102,14 @@ class Index extends React.Component {
     this.setState({
       filters: {
         ...this.state.filters,
-        [name]: {
-          ...this.state.filters[name],
-          value: e.target.value
-        }
+        [name]: e.target.value
       }
     });
   };
 
-  handleCheckbox = e => {
-    const target = e.target;
-    const name = target.name;
+  showFilters = () => {
     this.setState({
-      filters: {
-        ...this.state.filters,
-        [name]: {
-          ...this.state.filters[name],
-          enabled: !this.state.filters[name].enabled
-        }
-      }
+      filtersShown: !this.state.filtersShown
     });
   };
 
@@ -149,15 +118,38 @@ class Index extends React.Component {
   }
 
   render() {
-    console.log(this.state.filters);
     return (
       <Layout>
-        <Filters
-          filter={this.state.filters}
-          handleInput={this.handleInput}
-          handleCheckbox={this.handleCheckbox}
-          handleSubmit={this.handleSubmit}
-        />
+        <div>
+          <span className="font-semibold text-l">Filters</span>
+          {!this.state.filtersShown && (
+            <KeyboardArrowRightIcon
+              className="arrow-icon"
+              onClick={this.showFilters}
+            />
+          )}
+          {this.state.filtersShown && (
+            <KeyboardArrowDownIcon
+              className="arrow-icon"
+              onClick={this.showFilters}
+            />
+          )}
+        </div>
+        {this.state.filtersShown && (
+          <Filters
+            filter={this.state.filters}
+            filterApplied={this.state.filterApplied}
+            handleInput={this.handleInput}
+            handleSubmit={this.handleSubmit}
+            handleClearFilter={this.handleClearFilter}
+          />
+        )}
+        {!this.state.filtersShown && (
+          <FilterTags
+            filters={this.state.filters}
+            handleClearFilter={this.handleClearFilter}
+          />
+        )}
         <Letters data={this.state.letters} />
       </Layout>
     );

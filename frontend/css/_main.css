@@ -1,8 +1,19 @@
 .main {
   color: black;
+  min-width: 75vw;
 }
 
 body {
   display: flex;
   justify-content: center;
+  /* background: linear-gradient(to right, #33ccff 0%, #ff99cc 100%); */
+}
+
+.filter-input-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.arrow-icon {
+  cursor: pointer;
 }

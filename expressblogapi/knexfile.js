@@ -14,7 +14,7 @@ module.exports = {
       directory: appRoot + '/db/seeds'
     },
     useNullAsDefault: true,
-    debug: true
+    debug: false
   },
 
   staging: {

@@ -12,9 +12,7 @@ const getAllLetters = async (req, res) => {
 
 const getLetter = async (req, res) => {
   const id = req.params.id;
-  const letter = await db('letters')
-    .select()
-    .where('letter_id', id);
+  const letter = await db('letters').select().where('letter_id', id);
   res.send(letter);
 };
 
@@ -28,14 +26,14 @@ const getLetterByYear = async (req, res) => {
 
 const getLetterByQuery = async (req, res) => {
   const request = req.query;
-  const filterCheck = Object.keys(request).filter(item => {
+  const filterCheck = Object.keys(request).filter((item) => {
     return request[item] !== '';
   });
   console.log(filterCheck);
   try {
     const letters = await db('letters')
-      .select('text', 'fromFirstName', 'year', 'letter_id')
-      .where(function() {
+      .select('*')
+      .where(function () {
         if (request.year) {
           this.where('year', request.year);
         }
@@ -108,5 +106,5 @@ module.exports = {
   getAllLetters,
   getLetter,
   getLetterByYear,
-  getLetterByQuery
+  getLetterByQuery,
 };

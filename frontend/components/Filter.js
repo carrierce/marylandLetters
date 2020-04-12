@@ -1,30 +1,35 @@
-const Filter = props => {
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+
+const Filter = (props) => {
   const filterName = props.filterName;
-  const upperCaseFilterName =
-    filterName.charAt(0).toUpperCase() + filterName.slice(1);
   return (
-    <div
-      className={`m-4 border-b-2 border-grey pb-5 ${props.filterBackground}`}
-    >
-      <label className="mx-2 block">{upperCaseFilterName}</label>
+    <div className={`filters-div m-4 pb-2 ${props.filterBackground}`}>
+      <div className="filter-label-div">
+        <label>{props.displayName}</label>
+        {props.filterApplied && props.filterObject[filterName] != "" && (
+          <IconButton
+            className="filter-cancel-button ml-1"
+            aria-label="delete"
+            onClick={() => {
+              props.handleClearFilter(filterName);
+            }}
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>
+        )}
+      </div>
       <input
         type={props.inputType}
         min={props.min}
         max={props.max}
         value={props.filterObject[filterName]}
-        className="border-2 ml-2 w-3/5"
+        className="border-2 w-3/5"
         onChange={props.handleInput}
         name={filterName}
       ></input>
-      {props.filterApplied && props.filterObject[filterName] != "" && (
-        <button
-          onClick={() => {
-            props.handleClearFilter(filterName);
-          }}
-        >
-          X
-        </button>
-      )}
+      <span className="filter-right-border"></span>
     </div>
   );
 };

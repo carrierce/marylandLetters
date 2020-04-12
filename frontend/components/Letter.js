@@ -1,7 +1,7 @@
-const Letter = props => {
+const Letter = (props) => {
   const cleanedText = cleanText(props.data.text);
   return (
-    <div className="container m-4 border-b-2 border-grey pb-5">
+    <div className="container border-b-2 border-grey pb-5">
       <div className="font-bold">
         <p>Year: {props.data.year}</p>
       </div>
@@ -14,7 +14,7 @@ const Letter = props => {
   );
 };
 
-const cleanText = letterText => {
+const cleanText = (letterText) => {
   let textToArray = letterText.split("");
   let spanOpen = false;
   let inputArray = textToArray;

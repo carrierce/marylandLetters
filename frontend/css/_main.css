@@ -9,11 +9,46 @@ body {
   /* background: linear-gradient(to right, #33ccff 0%, #ff99cc 100%); */
 }
 
-.filter-input-box {
+.filter-input-boxes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 .arrow-icon {
   cursor: pointer;
+}
+
+.filters-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.filter-right-border {
+  height: 5px;
+}
+
+.filters-div input {
+  border: solid rgb(214, 212, 212) 0.1em;
+  border-radius: 5px;
+}
+
+.filters-div:nth-last-child(1) {
+  border: none;
+}
+
+.filter-cancel-button {
+  margin-left: 10px;
+}
+.filter-cancel-button:hover {
+  cursor: pointer;
+}
+
+.filter-label-div {
+  display: flex;
+  align-items: center;
+}
+
+.filter-submit-button {
+  margin-left: 16px;
 }

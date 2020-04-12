@@ -1,6 +1,6 @@
 import Letter from "./Letter";
 
-const Letters = props => {
+const Letters = (props) => {
   console.log(props.data);
   return (
     <div className="w-full">
@@ -9,7 +9,7 @@ const Letters = props => {
           No Letters found, please adjust search
         </div>
       )}
-      {props.data.map(letter => {
+      {props.data.map((letter) => {
         return <Letter key={letter.letter_id} data={letter} />;
       })}
     </div>

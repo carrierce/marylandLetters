@@ -63,7 +63,7 @@ const Filters = (props) => {
     },
   ];
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={props.handleSubmit} className="filter-nav-div">
       <div className="filter-input-boxes">
         {filters.map((filterName) => {
           return (

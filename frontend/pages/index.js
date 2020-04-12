@@ -1,10 +1,8 @@
 import Letters from "../components/Letters";
 import Layout from "../components/Layout";
 import Filters from "../components/Filters";
-import FilterTags from "../components/FilterTags";
 import React from "react";
 import axios from "axios";
-import { Button } from "@material-ui/core";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 const fetch = require("node-fetch");
@@ -30,8 +28,8 @@ class Index extends React.Component {
         text: "",
         toAddress: "",
         toPersonFromPerson: "",
-        to: ""
-      }
+        to: "",
+      },
     };
   }
 
@@ -41,11 +39,11 @@ class Index extends React.Component {
     );
     const data = letters.data;
     this.setState({
-      letters: this.state.letters.concat(data)
+      letters: this.state.letters.concat(data),
     });
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     if (e) {
       e.preventDefault();
     }
@@ -64,7 +62,7 @@ class Index extends React.Component {
       "text",
       "toAddress",
       "toPersonFromPerson",
-      "to"
+      "to",
     ];
     for (let i = 0; i < filterList.length; i++) {
       if (this.state.filters[filterList[i]] !== "") {
@@ -72,44 +70,44 @@ class Index extends React.Component {
       }
     }
     this.setState({
-      letters: []
+      letters: [],
     });
     const response = await axios("http://localhost:5500/api/letters/", {
-      params: filters
+      params: filters,
     });
     this.setState({
       letters: response.data,
-      filterApplied: true
+      filterApplied: true,
     });
   };
 
-  handleClearFilter = filterName => {
+  handleClearFilter = (filterName) => {
     console.log(filterName);
     this.setState(
       {
         filters: {
           ...this.state.filters,
-          [filterName]: ""
-        }
+          [filterName]: "",
+        },
       },
       this.handleSubmit
     );
   };
 
-  handleInput = e => {
+  handleInput = (e) => {
     const target = e.target;
     const name = target.name;
     this.setState({
       filters: {
         ...this.state.filters,
-        [name]: e.target.value
-      }
+        [name]: e.target.value,
+      },
     });
   };
 
   showFilters = () => {
     this.setState({
-      filtersShown: !this.state.filtersShown
+      filtersShown: !this.state.filtersShown,
     });
   };
 
@@ -120,8 +118,8 @@ class Index extends React.Component {
   render() {
     return (
       <Layout>
-        <div>
-          <span className="font-semibold text-l">Filters</span>
+        <div className="filter-nav-div">
+          <span className="font-semibold text-xl">Filters</span>
           {!this.state.filtersShown && (
             <KeyboardArrowRightIcon
               className="arrow-icon"
@@ -141,12 +139,6 @@ class Index extends React.Component {
             filterApplied={this.state.filterApplied}
             handleInput={this.handleInput}
             handleSubmit={this.handleSubmit}
-            handleClearFilter={this.handleClearFilter}
-          />
-        )}
-        {!this.state.filtersShown && (
-          <FilterTags
-            filters={this.state.filters}
             handleClearFilter={this.handleClearFilter}
           />
         )}

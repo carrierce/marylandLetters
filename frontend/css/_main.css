@@ -5,13 +5,30 @@
 
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  /* background: linear-gradient(to right, #33ccff 0%, #ff99cc 100%); */
+  width: 80%;
+  margin: 0 auto;
+}
+
+.about {
+  margin: 2em auto;
+  width: 90%;
+}
+
+.about p {
+  margin-bottom: 0.5em;
+  text-align: justify;
 }
 
 .filter-input-boxes {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.filter-nav-div {
+  margin: 0 auto;
+  width: 90%;
 }
 
 .arrow-icon {
@@ -22,6 +39,8 @@ body {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin: 0 auto;
+  width: 90%;
 }
 
 .filter-right-border {
@@ -51,4 +70,20 @@ body {
 
 .filter-submit-button {
   margin-left: 16px;
+}
+
+.letter {
+  border-bottom: solid gray 1px;
+  margin-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.letter:nth-last-child(1) {
+  border: none;
+}
+
+.letters-container {
+  width: 90%;
+  text-align: justify;
+  margin: 0 auto;
 }

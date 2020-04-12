@@ -1,14 +1,41 @@
 const Letter = (props) => {
   const cleanedText = cleanText(props.data.text);
   return (
-    <div className="container border-b-2 border-grey pb-5">
-      <div className="font-bold">
-        <p>Year: {props.data.year}</p>
-      </div>
+    <div className="letter container">
       <div dangerouslySetInnerHTML={{ __html: cleanedText }} />
       <br />
-      <div className="font-bold">
-        <p>From First Name: {props.data.fromFirstName}</p>
+      <div>
+        <p>
+          <span className="font-bold">From:</span>{" "}
+          {props.data.fromFirstName ? (
+            props.data.fromFirstName
+          ) : (
+            <span style={{ fontStyle: "italic" }}>Unknown</span>
+          )}
+          {props.data.fromLastName ? (
+            props.data.fromLastName
+          ) : (
+            <span style={{ fontStyle: "italic" }}>Unknown</span>
+          )}
+        </p>
+        <p>
+          <span className="font-bold">To:</span>{" "}
+          {props.data.to ? (
+            props.data.to
+          ) : (
+            <span style={{ fontStyle: "italic" }}>Unknown</span>
+          )}
+        </p>
+        {console.log(props.data)}
+        <p>
+          <span className="font-bold">Date</span> (mm/dd/yyyy):{" "}
+          {props.data.month > 0 || props.data.month != ""
+            ? props.data.month
+            : "?"}
+          /{props.data.day > 0 || props.data.day != "" ? props.data.day : "?"}/
+          {props.data.year > 0 || props.data.year != "" ? props.data.year : "?"}
+        </p>
+        <p></p>
       </div>
     </div>
   );

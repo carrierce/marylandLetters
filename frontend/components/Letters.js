@@ -3,9 +3,9 @@ import Letter from "./Letter";
 const Letters = (props) => {
   console.log(props.data);
   return (
-    <div className="w-full">
+    <div className="letters-container">
       {props.data.length == 0 && (
-        <div className="container m-4 border-b-2 border-grey pb-5">
+        <div className="container m-4 pb-5">
           No Letters found, please adjust search
         </div>
       )}

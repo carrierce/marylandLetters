@@ -35,7 +35,7 @@ class Index extends React.Component {
 
   getLetters = async () => {
     let letters = await axios(
-      "http://localhost:5500/api/letters/?fromFirstName=Mary"
+      "http://api.frombowlinggreen.com/api/letters/?fromFirstName=Mary"
     );
     const data = letters.data;
     this.setState({
@@ -72,9 +72,12 @@ class Index extends React.Component {
     this.setState({
       letters: [],
     });
-    const response = await axios("http://localhost:5500/api/letters/", {
-      params: filters,
-    });
+    const response = await axios(
+      "http://api.frombowlinggreen.com/api/letters/",
+      {
+        params: filters,
+      }
+    );
     this.setState({
       letters: response.data,
       filterApplied: true,

@@ -33,6 +33,7 @@ body {
 
 .arrow-icon {
   cursor: pointer;
+  max-height: 2rem;
 }
 
 .filters-div {

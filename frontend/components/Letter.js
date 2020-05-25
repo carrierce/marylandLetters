@@ -26,7 +26,6 @@ const Letter = (props) => {
             <span style={{ fontStyle: "italic" }}>Unknown</span>
           )}
         </p>
-        {console.log(props.data)}
         <p>
           <span className="font-bold">Date</span> (mm/dd/yyyy):{" "}
           {props.data.month > 0 || props.data.month != ""

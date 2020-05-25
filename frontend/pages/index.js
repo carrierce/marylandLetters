@@ -11,9 +11,11 @@ class Index extends React.Component {
   constructor() {
     super();
     this.state = {
+      isLoaded: false,
       filtersShown: false,
       filterApplied: false,
       letters: [],
+      isLoading: false,
       filters: {
         year: "",
         fromFirstName: "",
@@ -34,12 +36,16 @@ class Index extends React.Component {
   }
 
   getLetters = async () => {
+    this.setState({
+      isLoading: true,
+    });
     let letters = await axios(
       "https://lettersbowlinggreen.com/api/letters/?fromFirstName=Mary"
     );
     const data = letters.data;
     this.setState({
       letters: this.state.letters.concat(data),
+      isLoading: false,
     });
   };
 
@@ -71,6 +77,7 @@ class Index extends React.Component {
     }
     this.setState({
       letters: [],
+      isLoading: true,
     });
     const response = await axios(
       "https://lettersbowlinggreen.com/api/letters/",
@@ -81,6 +88,7 @@ class Index extends React.Component {
     this.setState({
       letters: response.data,
       filterApplied: true,
+      isLoading: false,
     });
   };
 
@@ -116,26 +124,36 @@ class Index extends React.Component {
 
   componentDidMount() {
     this.getLetters();
+    this.setState({
+      isLoaded: true,
+    });
   }
 
   render() {
     return (
       <Layout>
-        <div className="filter-nav-div">
-          <span className="font-semibold text-xl">Filters</span>
-          {!this.state.filtersShown && (
-            <KeyboardArrowRightIcon
-              className="arrow-icon"
-              onClick={this.showFilters}
-            />
-          )}
-          {this.state.filtersShown && (
-            <KeyboardArrowDownIcon
-              className="arrow-icon"
-              onClick={this.showFilters}
-            />
-          )}
-        </div>
+        {this.state.isLoaded && (
+          <div className="filter-nav-div">
+            {!this.state.filtersShown && !this.state.isLoading && (
+              <>
+                <span className="font-semibold text-xl">Filters</span>
+                <KeyboardArrowRightIcon
+                  className="arrow-icon"
+                  onClick={this.showFilters}
+                />
+              </>
+            )}
+            {this.state.filtersShown && (
+              <>
+                <span className="font-semibold text-xl">Filters</span>
+                <KeyboardArrowDownIcon
+                  className="arrow-icon"
+                  onClick={this.showFilters}
+                />
+              </>
+            )}
+          </div>
+        )}
         {this.state.filtersShown && (
           <Filters
             filter={this.state.filters}
@@ -145,7 +163,7 @@ class Index extends React.Component {
             handleClearFilter={this.handleClearFilter}
           />
         )}
-        <Letters data={this.state.letters} />
+        <Letters data={this.state.letters} isLoading={this.state.isLoading} />
       </Layout>
     );
   }

@@ -1,12 +1,23 @@
 import Letter from "./Letter";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import { useState, useEffect } from "react";
 
 const Letters = (props) => {
-  console.log(props.data);
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
   return (
     <div className="letters-container">
-      {props.data.length == 0 && (
+      {props.isLoading && (
+        <div className="flex container justify-center m-4 pb-5">
+          <CircularProgress />
+        </div>
+      )}
+      {props.data.length <= 0 && !props.isLoading && isLoaded && (
         <div className="container m-4 pb-5">
-          No Letters found, please adjust search
+          <p>No Letters found, please adjust search</p>
         </div>
       )}
       {props.data.map((letter) => {

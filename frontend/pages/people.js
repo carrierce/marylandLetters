@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
 import PeopleCard from "../components/PeopleCard";
 import axios from "axios";
-const BASE_URI = "https://lettersbowlinggreen.com/api";
+import { PROD_BASE_URI } from "../serverconfig";
+const BASE_URI = PROD_BASE_URI;
 
 const People = () => {
   const [people, setPeople] = useState(null);

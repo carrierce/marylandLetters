@@ -3,7 +3,8 @@ import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { useState, useEffect } from "react";
 import axios from "axios";
-const BASE_URI = "http://localhost:5500/api";
+import { PROD_BASE_URI } from "../serverconfig";
+const BASE_URI = PROD_BASE_URI;
 
 const SelectFilter = (props) => {
   const [years, setYears] = useState([]);

@@ -5,8 +5,9 @@ import React from "react";
 import axios from "axios";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { PROD_BASE_URI } from "../serverconfig";
 const fetch = require("node-fetch");
-const BASE_URI = "https://lettersbowlinggreen.com/api/letters";
+const BASE_URI = `${PROD_BASE_URI}/letters`;
 class Index extends React.Component {
   constructor() {
     super();

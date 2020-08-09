@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { PeopleContext } from "../context/PeopleContext";
 import Router from "next/router";
-const BASE_URI = "http://localhost:5500/api/";
+import { PROD_BASE_URI } from "../serverconfig";
+const BASE_URI = PROD_BASE_URI;
 
 const PeopleCard = ({ firstName, lastName }) => {
   const [count, setCount] = useState(null);

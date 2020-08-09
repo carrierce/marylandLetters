@@ -4,7 +4,8 @@ import Layout from "../components/Layout";
 import Letter from "../components/Letter";
 import axios from "axios";
 import Router from "next/router";
-const BASE_URI = "http://localhost:5500/api/";
+import { PROD_BASE_URI } from "../serverconfig";
+const BASE_URI = PROD_BASE_URI;
 
 const Profile = () => {
   const [letters, setLetters] = useState(null);

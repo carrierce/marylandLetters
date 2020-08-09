@@ -6,7 +6,8 @@ import axios from "axios";
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 const fetch = require("node-fetch");
-
+// const BASE_URI = "https://lettersbowlinggreen.com/api/letters";
+const BASE_URI = "http://localhost:5500/api/letters";
 class Index extends React.Component {
   constructor() {
     super();
@@ -39,9 +40,7 @@ class Index extends React.Component {
     this.setState({
       isLoading: true,
     });
-    let letters = await axios(
-      "https://lettersbowlinggreen.com/api/letters/?fromFirstName=Mary"
-    );
+    let letters = await axios(`${BASE_URI}/?fromFirstName=Mary`);
     const data = letters.data;
     this.setState({
       letters: this.state.letters.concat(data),
@@ -79,12 +78,9 @@ class Index extends React.Component {
       letters: [],
       isLoading: true,
     });
-    const response = await axios(
-      "https://lettersbowlinggreen.com/api/letters/",
-      {
-        params: filters,
-      }
-    );
+    const response = await axios(`${BASE_URI}/`, {
+      params: filters,
+    });
     this.setState({
       letters: response.data,
       filterApplied: true,
@@ -93,7 +89,6 @@ class Index extends React.Component {
   };
 
   handleClearFilter = (filterName) => {
-    console.log(filterName);
     this.setState(
       {
         filters: {
@@ -111,7 +106,7 @@ class Index extends React.Component {
     this.setState({
       filters: {
         ...this.state.filters,
-        [name]: e.target.value,
+        [name]: e.target.value.toString(),
       },
     });
   };

@@ -9,6 +9,8 @@ body {
   justify-content: center;
   width: 80%;
   margin: 0 auto;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 .about {
@@ -53,6 +55,11 @@ body {
   border-radius: 5px;
 }
 
+.filters-div select {
+  border: solid rgb(214, 212, 212) 0.1em;
+  border-radius: 5px;
+}
+
 .filters-div:nth-last-child(1) {
   border: none;
 }
@@ -87,4 +94,21 @@ body {
   width: 90%;
   text-align: justify;
   margin: 0 auto;
+}
+
+.people-card {
+  border: 1px solid #888888;
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.people-card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  width: 100%;
 }

@@ -11,7 +11,7 @@ const Letter = (props) => {
             props.data.fromFirstName
           ) : (
             <span style={{ fontStyle: "italic" }}>Unknown</span>
-          )}
+          )}{" "}
           {props.data.fromLastName ? (
             props.data.fromLastName
           ) : (

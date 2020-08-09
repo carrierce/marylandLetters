@@ -1,4 +1,5 @@
-import Filter from "./Filter";
+import InputFilter from "./InputFilter";
+import SelectFilter from "./SelectFilter";
 import { Button } from "@material-ui/core";
 
 const Filters = (props) => {
@@ -20,11 +21,11 @@ const Filters = (props) => {
   //   ];
   const filters = [
     {
-      name: "day",
-      displayName: "Day of the Month",
+      name: "year",
+      displayName: "Year",
       type: "number",
-      min: 1,
-      max: 31,
+      min: 1700,
+      max: 1940,
     },
     {
       name: "month",
@@ -32,13 +33,6 @@ const Filters = (props) => {
       type: "number",
       min: 1,
       max: 12,
-    },
-    {
-      name: "year",
-      displayName: "Year",
-      type: "number",
-      min: 1700,
-      max: 1940,
     },
     {
       name: "fromFirstName",
@@ -66,21 +60,39 @@ const Filters = (props) => {
     <form onSubmit={props.handleSubmit} className="filter-nav-div">
       <div className="filter-input-boxes">
         {filters.map((filterName) => {
-          return (
-            <Filter
-              min={filterName.min}
-              max={filterName.max}
-              key={filterName.name}
-              displayName={filterName.displayName}
-              filterName={filterName.name}
-              filterBackground={filterName.background}
-              filterObject={props.filter}
-              handleInput={props.handleInput}
-              filterApplied={props.filterApplied}
-              inputType={filterName.type}
-              handleClearFilter={props.handleClearFilter}
-            />
-          );
+          if (filterName.name == "year") {
+            return (
+              <SelectFilter
+                min={filterName.min}
+                max={filterName.max}
+                key={filterName.name}
+                displayName={filterName.displayName}
+                filterName={filterName.name}
+                filterBackground={filterName.background}
+                filterObject={props.filter}
+                handleInput={props.handleInput}
+                filterApplied={props.filterApplied}
+                inputType={filterName.type}
+                handleClearFilter={props.handleClearFilter}
+              />
+            );
+          } else {
+            return (
+              <InputFilter
+                min={filterName.min}
+                max={filterName.max}
+                key={filterName.name}
+                displayName={filterName.displayName}
+                filterName={filterName.name}
+                filterBackground={filterName.background}
+                filterObject={props.filter}
+                handleInput={props.handleInput}
+                filterApplied={props.filterApplied}
+                inputType={filterName.type}
+                handleClearFilter={props.handleClearFilter}
+              />
+            );
+          }
         })}
       </div>
       <Button

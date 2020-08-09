@@ -1,13 +1,24 @@
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { useState, useEffect } from "react";
+import axios from "axios";
+const BASE_URI = "http://localhost:5500/api";
 
-const Filter = (props) => {
+const SelectFilter = (props) => {
+  const [years, setYears] = useState([]);
+  const getYears = async () => {
+    const letterYears = await axios(`${BASE_URI}/years`);
+    setYears(letterYears.data);
+  };
+  useEffect(() => {
+    getYears();
+  }, []);
   const filterName = props.filterName;
   return (
     <div className={`filters-div m-4 pb-2 ${props.filterBackground}`}>
       <div className="filter-label-div">
-        <label>{props.displayName}</label>
+        <label htmlFor="year-select">{props.displayName}</label>
         {props.filterApplied && props.filterObject[filterName] != "" && (
           <IconButton
             className="filter-cancel-button ml-1"
@@ -20,18 +31,23 @@ const Filter = (props) => {
           </IconButton>
         )}
       </div>
-      <input
-        type={props.inputType}
-        min={props.min}
-        max={props.max}
-        value={props.filterObject[filterName]}
+      <select
+        id="year-select"
         className="border-2 w-3/5"
         onChange={props.handleInput}
         name={filterName}
-      ></input>
+      >
+        {years.map((year, i) => {
+          return (
+            <option key={i} value={year}>
+              {year}
+            </option>
+          );
+        })}
+      </select>
       <span className="filter-right-border"></span>
     </div>
   );
 };
 
-export default Filter;
+export default SelectFilter;
